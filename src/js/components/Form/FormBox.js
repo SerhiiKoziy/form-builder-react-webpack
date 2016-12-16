@@ -26,8 +26,6 @@ const FormBox = ({answerType, title, onChange,value, questionId ,answerId, ...pr
       break;
     case 'multiselect':
       component = (
-
-
           <CheckBox name={`${answerType}-${questionId}`}
                     value={value}
                     type={'checkbox'}
@@ -58,10 +56,7 @@ const FormBox = ({answerType, title, onChange,value, questionId ,answerId, ...pr
             }
 
           </div>
-
       )
-
-
       break;
     case 'bit':
       component = (
@@ -69,7 +64,6 @@ const FormBox = ({answerType, title, onChange,value, questionId ,answerId, ...pr
                    answerType={answerType}
                    onChange={onChange}
           />);
-
       break;
     default:
       throw new Error('unresolved type of answer');

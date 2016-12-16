@@ -7,6 +7,8 @@ import Button from '../components/Button/Button';
 import Spinner from '../components/Spinner/Spinner';
 import DropdownList from 'react-widgets/lib/DropdownList';
 
+import FormBox from '../components/Form/FormBox';
+
 
 const mapStateToProps = (state) => state;
 
@@ -33,6 +35,7 @@ export default class StartPage extends Component {
     render() {
 
 
+        let data= this.props.data;
 
 
 
@@ -43,28 +46,27 @@ export default class StartPage extends Component {
                     <div className="search-form">
                         <h3>New form</h3>
                         <form onSubmit={(e)=>e.preventDefault()}>
+                            {
+                                data.map((item)=>{
+                                    return(
+                                        <FormBox
+                                            type={item.view}
+                                            name={item.name}
+                                            label={item.label}
+                                            labelAlign={item.labelAlign}
+                                            labelPosition={item.labelPosition}
+                                            placeholder={item.placeholder}
+                                            value={item.value}
+                                            options={item.options || []}
+                                            id={item.id}
 
-                            {/* <div className="input-box">
-                                    <input
-                                        type="text"
-                                        onKeyUp={::this.saveName}
-                                        placeholder="Artist name"
-                                        autoFocus
-                                    />
-                                </div>
-                                <DropdownList
-                                    name="currentCategory"
-                                    data={categories}
-                                    valueField="id"
-                                    textField="name"
-                                    placeholder="Category"
-                                    defaultValue={'all'}
-                                    onChange={value => this.setState({currentCategory: value, currentEntity:''})}
+                                        />
+                                    )
 
-                                />
-                                <Button type={'white'}
-                                    onClick={::this.searchForm}
-                                    children="search"/>*/}
+                                })
+                            }
+
+                            
                         </form>
 
                     </div>

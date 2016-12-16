@@ -66,7 +66,7 @@ export default class StartPage extends Component {
                                 })
                             }
 
-                            
+
                         </form>
 
                     </div>

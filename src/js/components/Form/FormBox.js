@@ -1,70 +1,45 @@
 import React, {PropTypes} from 'react';
 
-import Boolean from '../Boolean/Boolean'
 import CheckBox from '../CheckBox/CheckBox'
-
 import TextField from '../TextField/TextField'
-const FormBox = ({answerType, title, onChange,value, questionId ,answerId, ...props}) => {
+
+const FormBox = ({type, name, label, labelAlign, labelPosition, onChange, placeholder ,value, id , options}) => {
   let component;
-  switch (answerType) {
+  switch (type) {
     case 'text':
       component = (
           <TextField
-              fieldType="textarea"
-              rows="6"
-              placeholder="Введіть відповідь"
-              onChange={onChange}
-          />);
-      break;
-    case 'select':
-      component = (
-          <CheckBox name={`${answerType}-${questionId}`}
-                    type={'radio'}
-                    value={value}
-                    onChange={onChange}
-          />);
-      break;
-    case 'multiselect':
-      component = (
-          <CheckBox name={`${answerType}-${questionId}`}
-                    value={value}
-                    type={'checkbox'}
-                    onChange={onChange}
-          />);
+              fieldType="text"
+              name = {name}
+              label = {label}
+              labelAlign = {labelAlign}
+              labelPosition = {labelPosition}
+              placeholder = {placeholder}
+              value = {value}
+              id = {id}
 
+              onChange={onChange}
+          />
+      );
       break;
+
+
     case 'opinion':
       component = (
-          <div>
-            {
-              Array.from(Array(10)).map((el, i) => (
+          <CheckBox
+                {...props}
+                type='radio'
+                name = {name}
+                label={label}
+                labelAlign = {labelAlign}
+                labelPosition = {labelPosition}
+                onChange={onChange.bind(this,i+1)}
+          />
 
-                  <CheckBox
-                      {...props}
-                      label={i + 1}
-                      type='radio'
-                      name={`${answerType}-${questionId}`}
-                      answerId={`${answerType}-${questionId}-${i}`}
-                      classType={answerType}
-                      key={questionId+'-'+i}
-                      onChange={onChange.bind(this,i+1)}
-
-
-                  />)
-              )
-
-            }
-
-          </div>
       )
       break;
-    case 'bit':
-      component = (
-          <Boolean type='boolean'
-                   answerType={answerType}
-                   onChange={onChange}
-          />);
-      break;
+
+
     default:
       throw new Error('unresolved type of answer');
       return false

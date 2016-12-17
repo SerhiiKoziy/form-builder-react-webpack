@@ -1,10 +1,10 @@
 import React, {PropTypes} from 'react';
 
 
-const TextField = ({id, name, className, label, value, placeholder, onChange, ...otherProps}) => {
+const TextField = ({id, name, label, value, placeholder, onChange, ...otherProps}) => {
     placeholder = placeholder || label;
     return (
-        <div className={`input-box ${className}`}>
+        <div className={`input-box`}>
             <input
                 name = {name}
                 label = {label}

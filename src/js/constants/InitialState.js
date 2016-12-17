@@ -22,7 +22,7 @@ export const INITIAL_STATE = {
             "value": "",
             "id": 2
         },
-        /*{
+        {
             "view": "radio",
             "name": "gender",
             "label": "gender",
@@ -35,7 +35,7 @@ export const INITIAL_STATE = {
                 "Мужчина"
             ],
             "id": 3
-        },*/
+        },
         {
             "view": "text",
             "name": "mothername",

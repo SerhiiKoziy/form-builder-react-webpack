@@ -59,6 +59,7 @@ export default class StartPage extends Component {
                                             value={item.value}
                                             options={item.options || []}
                                             id={item.id}
+                                            key = {item.id}
 
                                         />
                                     )

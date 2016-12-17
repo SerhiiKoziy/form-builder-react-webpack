@@ -24,20 +24,26 @@ const FormBox = ({type, name, label, labelAlign, labelPosition, onChange, placeh
       break;
 
 
-    /*case 'opinion':
+    case 'radio':
       component = (
-          <CheckBox
-                {...props}
-                type='radio'
-                name = {name}
-                label={label}
-                labelAlign = {labelAlign}
-                labelPosition = {labelPosition}
-                onChange={onChange.bind(this,i+1)}
-          />
-
+          <div>
+            <p>{label}</p>
+              {options.map((item, i) => {
+                  console.log(item)
+                  return (
+                        <CheckBox
+                            id={`radio'+${id + i}`}
+                            type='radio'
+                            name = {name}
+                            labelInside={item}
+                            onChange={onChange}
+                            key={`radio'+${id + i}`}
+                        />
+                    )
+              })}
+          </div>
       )
-      break;*/
+      break;
 
 
     default:

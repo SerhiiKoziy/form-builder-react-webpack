@@ -1,11 +1,15 @@
 import React from 'react';
 
 
-const CheckBox = ({ className, type, onClick, label, answerId ,defaultChecked }) => (
-    <div className={`checkbox-wr ${className}`}>
-      <input type={`${type}`} id={`featured-${answerId}`} defaultChecked={defaultChecked}
-             onClick={typeof onClick === 'function' ? onClick : false}/>
-      <label htmlFor={`featured-${answerId}`}>{label}</label>
+const CheckBox = ({name, id, labelInside, type, onClick, label, answerId ,defaultChecked }) => (
+    <div className={`checkbox-wr`}>
+      <input type={type}
+             id={id}
+             name ={name}
+             defaultChecked={defaultChecked}
+             onClick={typeof onClick === 'function' ? onClick : false}
+      />
+      <label htmlFor={id}>{labelInside}</label>
     </div>
 );
 
@@ -18,8 +22,8 @@ CheckBox.propTypes = {
 };
 
 CheckBox.defaultProps = {
-  type: 'default',
-    defaultChecked:false
+    type: 'radio',
+    //defaultChecked:false
 };
 
 export default CheckBox;

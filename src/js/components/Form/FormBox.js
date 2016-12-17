@@ -24,7 +24,7 @@ const FormBox = ({type, name, label, labelAlign, labelPosition, onChange, placeh
       break;
 
 
-    case 'opinion':
+    /*case 'opinion':
       component = (
           <CheckBox
                 {...props}
@@ -37,7 +37,7 @@ const FormBox = ({type, name, label, labelAlign, labelPosition, onChange, placeh
           />
 
       )
-      break;
+      break;*/
 
 
     default:
@@ -46,12 +46,7 @@ const FormBox = ({type, name, label, labelAlign, labelPosition, onChange, placeh
       break;
   }
   return (
-      React.cloneElement(component, {
-        answerType,
-
-        answerId: answerType === 'text' ? undefined: answerId,
-        ...props
-      })
+      React.cloneElement(component)
   );
 
 }

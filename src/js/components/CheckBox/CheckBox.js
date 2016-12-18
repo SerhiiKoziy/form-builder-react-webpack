@@ -1,15 +1,17 @@
 import React from 'react';
 
-const CheckBox = ({ name, id, labelPosition, labelInside, type, onChange, label, defaultChecked }) => (
-  <div className={`checkbox-wr ${labelPosition}`}>
-    <input type={type}
-           id={id}
-           name={name}
-           defaultChecked={defaultChecked}
-           value={labelInside}
-           onChange={typeof onChange === 'function' ? onChange : false}
+const CheckBox = (props) => (
+
+  <div className={`checkbox-wr ${props.labelPosition}`} >
+    <input
+      type={props.type}
+      id={props.id}
+      name={props.name}
+      defaultChecked={props.defaultChecked}
+      value={props.labelInside}
+      onChange={typeof props.onChange === 'function' ? props.onChange : false}
     />
-    <label htmlFor={id}>{labelInside}</label>
+    <label htmlFor={props.id}>{props.labelInside}</label>
   </div>
 );
 
@@ -25,6 +27,7 @@ CheckBox.propTypes = {
   options: React.PropTypes.array,
   value: React.PropTypes.string,
   defaultChecked: React.PropTypes.bool,
+  id: React.PropTypes.number,
 
 };
 

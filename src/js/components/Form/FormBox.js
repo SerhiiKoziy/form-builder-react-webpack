@@ -4,7 +4,6 @@ import CheckBox from '../CheckBox/CheckBox';
 import TextField from '../TextField/TextField';
 
 const FormBox = (props) => {
-
   let component;
   switch (props.type) {
     case 'text':

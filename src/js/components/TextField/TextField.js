@@ -1,20 +1,55 @@
 import React, {PropTypes} from 'react';
 
 
-const TextField = ({id, name, label, value, placeholder, onChange, ...otherProps}) => {
+const TextField = ({id,data, activatorName, activatorValue, name, classNameBox, label, value, placeholder, onChange}) => {
     placeholder = placeholder || label;
-    return (
-        <div className={`input-box`}>
-            <input
-                name = {name}
-                label = {label}
-                placeholder = {placeholder}
-                value = {value}
-                id={id}
-                onChange={typeof onChange == 'function' ? onChange : false}/>
 
-            <label className="label" htmlFor={id}>{label}</label>
+    let selectRadioValue = data.map(item => {
+        if(item.name == activatorName){
+            return item.value;
+        }
+    }).filter(item => !!item)[0]
+
+
+    console.log(selectRadioValue, activatorValue, name)
+    return (
+        <div>
+            {
+                activatorName && (
+                    <div
+                        className={`input-box ${classNameBox} ${selectRadioValue === activatorValue ? 'active' : ''} ${activatorName ? 'hidden' : ''} `}>
+                        <label className="label" htmlFor={id}>{label}</label>
+                        <input
+                            name={name}
+                            label={label}
+                            placeholder={placeholder}
+                            defaultValue={value}
+                            id={id}
+                            onChange={typeof onChange == 'function' ? onChange : false}/>
+                    </div>
+                )
+            }
+            {
+                !activatorName && (
+                    <div className={`input-box ${classNameBox} ${selectRadioValue === activatorValue ? 'active' : ''} ${activatorName ? 'hidden' : ''} `}>
+                        <label className="label" htmlFor={id}>{label}</label>
+                        <input
+                            name = {name}
+                            label = {label}
+                            placeholder = {placeholder}
+                            defaultValue = {value}
+                            id={id}
+                            onChange={typeof onChange == 'function' ? onChange : false}/>
+                    </div>
+                )
+            }
+
+
         </div>
+
+
+
+
     )
 };
 

@@ -3,21 +3,23 @@ import React, {PropTypes} from 'react';
 import CheckBox from '../CheckBox/CheckBox'
 import TextField from '../TextField/TextField'
 
-const FormBox = ({type, name, label, labelAlign, labelPosition, onChange, placeholder ,value, id , options}) => {
+const FormBox = ({data, type, name, label, labelAlign, labelPosition, onChange, placeholder ,value,activatorValue, id, activatorName, options}) => {
   let component;
   switch (type) {
     case 'text':
       component = (
           <TextField
               fieldType="text"
+              data = {data}
               name = {name}
               label = {label}
               labelAlign = {labelAlign}
-              labelPosition = {labelPosition}
+              classNameBox = {labelPosition}
               placeholder = {placeholder}
               value = {value}
               id = {id}
-
+              activatorName={activatorName}
+              activatorValue={activatorValue}
               onChange={onChange}
           />
       );
@@ -26,18 +28,19 @@ const FormBox = ({type, name, label, labelAlign, labelPosition, onChange, placeh
 
     case 'radio':
       component = (
-          <div>
+          <div className="">
             <p>{label}</p>
               {options.map((item, i) => {
-                  console.log(item)
+                  //console.log(item)
                   return (
                         <CheckBox
-                            id={`radio'+${id + i}`}
+                            id={`radio-${id + i}`}
                             type='radio'
                             name = {name}
                             labelInside={item}
+                            classNameBox = {labelPosition}
                             onChange={onChange}
-                            key={`radio'+${id + i}`}
+                            key={`radio-${id + i}`}
                         />
                     )
               })}
@@ -47,7 +50,7 @@ const FormBox = ({type, name, label, labelAlign, labelPosition, onChange, placeh
 
 
     default:
-      throw new Error('unresolved type of answer');
+      throw new Error('unresolved type');
       return false
       break;
   }
@@ -57,7 +60,6 @@ const FormBox = ({type, name, label, labelAlign, labelPosition, onChange, placeh
 
 }
 
-// Make ESLint happy again: add validation to props
 FormBox.propTypes = {};
 FormBox.defaultProps = {};
 

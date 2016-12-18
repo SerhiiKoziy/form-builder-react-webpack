@@ -2,10 +2,7 @@
 import * as actions from '../actions';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import fecha from 'fecha';
 import Button from '../components/Button/Button';
-import Spinner from '../components/Spinner/Spinner';
-import DropdownList from 'react-widgets/lib/DropdownList';
 
 import FormBox from '../components/Form/FormBox';
 
@@ -31,25 +28,39 @@ export default class StartPage extends Component {
 
     }
 
+    changeForm( value) {
+       // console.log(value)
+        let data = {id, value};
 
+
+    }
+    onChange(name, e) {
+        const value = e.target.value
+        //console.log(name, value)
+        this.props.actions.updateElement(name, value)
+        //console.log(value)
+        /*let data = {id, value};
+         this.props.actions.changes(data)*/
+
+    }
     render() {
 
 
         let data= this.props.data;
 
 
-
         return (
 
             <div className={`page start-page`}>
 
-                    <div className="search-form">
+                    <div className="make-form">
                         <h3>New form</h3>
                         <form onSubmit={(e)=>e.preventDefault()}>
                             {
                                 data.map((item)=>{
                                     return(
                                         <FormBox
+                                            data = {data}
                                             type={item.view}
                                             name={item.name}
                                             label={item.label}
@@ -59,8 +70,10 @@ export default class StartPage extends Component {
                                             value={item.value}
                                             options={item.options || []}
                                             id={item.id}
+                                            activatorName={item.activatorName || ''}
+                                            activatorValue={item.activatorValue || ''}
                                             key = {item.id}
-
+                                            onChange={this.onChange.bind(this, item.name)}
                                         />
                                     )
 

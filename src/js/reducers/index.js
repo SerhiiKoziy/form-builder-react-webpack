@@ -1,2 +1,2 @@
 
-export { default as DataReduser } from './DataReduser';
+export { default as DataReducer } from './DataReducer';

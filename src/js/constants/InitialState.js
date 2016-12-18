@@ -44,7 +44,10 @@ export const INITIAL_STATE = {
             "labelPosition": "top",
             "placeholder": "",
             "value": "имя тещи",
-            "id": 4
+            "id": 4,
+            "activatorName": "gender",
+            "activatorValue": "Женщина",
+
         },
         {
             "view": "text",
@@ -54,7 +57,9 @@ export const INITIAL_STATE = {
             "labelPosition": "top",
             "placeholder": "",
             "value": "имя тестя",
-            "id": 5
+            "id": 5,
+            "activatorName": "gender",
+            "activatorValue": "Мужчина",
         }
     ],
 

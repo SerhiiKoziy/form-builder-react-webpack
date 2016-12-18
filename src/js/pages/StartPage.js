@@ -1,93 +1,85 @@
-﻿import React, {Component} from 'react';
-import * as actions from '../actions';
-import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
-import Button from '../components/Button/Button';
+﻿import React, { Component } from 'react';
+import { updateElement } from '../actions';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
 import FormBox from '../components/Form/FormBox';
 
 
-const mapStateToProps = (state) => state;
+const mapStateToProps = (state) => {
+  return { data: state };
+};
 
 const mapDispatchToProps = (dispatch) => {
-    return {
-        actions: bindActionCreators(actions, dispatch)
-    };
+  return bindActionCreators({ updateElement }, dispatch);
 };
 @connect(mapStateToProps, mapDispatchToProps)
 export default class StartPage extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
+  static propTypes = {
+    data: React.PropTypes.array.isRequired,
+    updateElement: React.PropTypes.func.isRequired,
+    type: React.PropTypes.string,
+    name: React.PropTypes.string,
+    label: React.PropTypes.string,
+    labelAlign: React.PropTypes.string,
+    labelPosition: React.PropTypes.string,
+    placeholder: React.PropTypes.string,
+    options: React.PropTypes.array,
+    id: React.PropTypes.number,
+    activatorName: React.PropTypes.string,
+    activatorValue: React.PropTypes.string,
+  };
 
+  onChange(name, e) {
+    const value = e.target.value;
+    this.props.updateElement(name, value);
+  }
 
-        }
-    }
-
-    componentDidMount() {
-
-    }
-
-    changeForm( value) {
-       // console.log(value)
-        let data = {id, value};
-
-
-    }
-    onChange(name, e) {
-        const value = e.target.value
-        //console.log(name, value)
-        this.props.actions.updateElement(name, value)
-        //console.log(value)
-        /*let data = {id, value};
-         this.props.actions.changes(data)*/
-
-    }
-    render() {
-
-
-        let data= this.props.data;
-
-
+  renderElements() {
+    let data = this.props.data;
+    return (
+      this.props.data.map((item) => {
         return (
-
-            <div className={`page start-page`}>
-
-                    <div className="make-form">
-                        <h3>New form</h3>
-                        <form onSubmit={(e)=>e.preventDefault()}>
-                            {
-                                data.map((item)=>{
-                                    return(
-                                        <FormBox
-                                            data = {data}
-                                            type={item.view}
-                                            name={item.name}
-                                            label={item.label}
-                                            labelAlign={item.labelAlign}
-                                            labelPosition={item.labelPosition}
-                                            placeholder={item.placeholder}
-                                            value={item.value}
-                                            options={item.options || []}
-                                            id={item.id}
-                                            activatorName={item.activatorName || ''}
-                                            activatorValue={item.activatorValue || ''}
-                                            key = {item.id}
-                                            onChange={this.onChange.bind(this, item.name)}
-                                        />
-                                    )
-
-                                })
-                            }
-
-
-                        </form>
-
-                    </div>
-
-
-                </div>
-
+          <FormBox
+            data={data}
+            type={item.view}
+            name={item.name}
+            label={item.label}
+            labelAlign={item.labelAlign}
+            labelPosition={item.labelPosition}
+            placeholder={item.placeholder}
+            value={item.value}
+            options={item.options || []}
+            id={item.id}
+            activatorName={item.activatorName || ''}
+            activatorValue={item.activatorValue || ''}
+            key={item.id}
+            onChange={this.onChange.bind(this, item.name)}
+          />
         )
-    }
-};
+      }
+      )
+    );
+  }
+
+  render() {
+    return (
+      <div className={'page start-page'}>
+        <div className="make-form">
+          <h3>New form</h3>
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+            }}
+          >
+            {this.renderElements()}
+          </form>
+
+        </div>
+
+
+      </div>
+
+    );
+  }
+}

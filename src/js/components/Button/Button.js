@@ -6,11 +6,10 @@ const Button = ({ type, onClick, children }) => (
     className={`btn btn--${type}`}
     onClick={typeof onClick === 'function' ? onClick : false}
   >
-  <span>{`${children}`}</span>
+    <span>{`${children}`}</span>
   </button>
 );
 
-// Make ESLint happy again: add validation to props
 Button.propTypes = {
   type: React.PropTypes.string,
   onClick: React.PropTypes.func,

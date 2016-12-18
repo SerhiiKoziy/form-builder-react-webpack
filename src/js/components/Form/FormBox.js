@@ -4,42 +4,41 @@ import CheckBox from '../CheckBox/CheckBox';
 import TextField from '../TextField/TextField';
 
 const FormBox = (props) => {
-  const { data, type, name, label, labelAlign, labelPosition, onChange, placeholder, value, activatorValue, id, activatorName, options } = props;
 
   let component;
-  switch (type) {
+  switch (props.type) {
     case 'text':
       component = (
         <TextField
           fieldType="text"
-          data={data}
-          name={name}
-          label={label}
-          labelAlign={labelAlign}
-          classNameBox={labelPosition}
-          placeholder={placeholder}
-          value={value}
-          id={id}
-          activatorName={activatorName}
-          activatorValue={activatorValue}
-          onChange={onChange}
+          data={props.data}
+          name={props.name}
+          label={props.label}
+          labelAlign={props.labelAlign}
+          classNameBox={props.labelPosition}
+          placeholder={props.placeholder}
+          value={props.value}
+          id={props.id}
+          activatorName={props.activatorName}
+          activatorValue={props.activatorValue}
+          onChange={props.onChange}
         />
       );
       break;
     case 'radio':
       component = (
-        <div className={`checkbox-wrapper ${labelPosition}`}>
-          <p>{label}</p>
+        <div className={`checkbox-wrapper ${props.labelPosition}`}>
+          <p>{props.label}</p>
           <div className="checkbox">
-            {options.map((item, i) => {
+            {props.options.map((item, i) => {
               return (
                 <CheckBox
-                  id={`radio-${id + i}`}
+                  id={`radio-${props.id + i}`}
                   type="radio"
-                  name={name}
+                  name={props.name}
                   labelInside={item}
-                  onChange={onChange}
-                  key={`radio-${id + i}`}
+                  onChange={props.onChange}
+                  key={`radio-${props.id + i}`}
                 />
               );
             })}
@@ -71,7 +70,7 @@ FormBox.propTypes = {
   value: React.PropTypes.string,
   onChange: React.PropTypes.func,
   label: React.PropTypes.string,
-  answerId: React.PropTypes.number,
+  id: React.PropTypes.number,
 };
 FormBox.defaultProps = {};
 

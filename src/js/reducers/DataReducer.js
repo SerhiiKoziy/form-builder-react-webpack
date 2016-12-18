@@ -6,11 +6,11 @@ export default function DataReducer(state = INITIAL_STATE, action) {
   switch (type) {
     case types.UPDATE_ELEMENT:
       const data = state.map(item => {
-        if (item.name == payload.name) {
-          item.value = payload.value
+        if (item.name === payload.name) {
+          item.value = payload.value;
         }
         return item;
-      })
+      });
       return data;
 
     default:

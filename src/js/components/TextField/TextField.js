@@ -1,40 +1,37 @@
 import React, { PropTypes } from 'react';
 
 
-const TextField = ({ id, data, activatorName, activatorValue, name, classNameBox, label, value, placeholder, onChange }) => {
-
-  const isElementActive = data.map(item => {
-    if (item.name === activatorName) {
+const TextField = (props) => {
+  const isElementActive = props.data.map(item => {
+    if (item.name === props.activatorName) {
       return item.value;
     }
   }).filter(item => !!item)[0];
 
-  return activatorName ? (
+  const renderElement = <div className={`input-box ${props.classNameBox}`}>
+    <label className="label" htmlFor={props.id}>{props.label}</label>
+    <input
+      name={props.name}
+      label={props.label}
+      placeholder={props.placeholder}
+      defaultValue={props.value}
+      id={props.id}
+      onChange={typeof props.onChange === 'function' ? props.onChange : false}
+    />
+  </div>;
 
-    (isElementActive === activatorValue) ?
-      (<div className={`input-box ${classNameBox}`}>
-        <label className="label" htmlFor={id}>{label}</label>
-        <input
-          name={name}
-          label={label}
-          placeholder={placeholder}
-          defaultValue={value}
-          id={id}
-          onChange={typeof onChange === 'function' ? onChange : false} />
-      </div>)
+  return !!props.activatorName ? (
+
+    (isElementActive === props.activatorValue) ?
+      (
+        <div>
+          {renderElement}
+        </div>
+      )
       : (null)
-
-
   ) : (
-    <div className={`input-box ${classNameBox}`}>
-      <label className="label" htmlFor={id}>{label}</label>
-      <input
-        name={name}
-        label={label}
-        placeholder={placeholder}
-        defaultValue={value}
-        id={id}
-        onChange={typeof onChange === 'function' ? onChange : false} />
+    <div>
+      {renderElement}
     </div>
   );
 

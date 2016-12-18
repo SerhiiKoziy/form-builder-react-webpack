@@ -56,7 +56,7 @@ export default class StartPage extends Component {
             key={item.id}
             onChange={this.onChange.bind(this, item.name)}
           />
-        )
+        );
       }
       )
     );

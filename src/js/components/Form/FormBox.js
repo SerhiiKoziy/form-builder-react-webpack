@@ -28,7 +28,7 @@ const FormBox = (props) => {
       break;
     case 'radio':
       component = (
-        <div className="checkbox-wrapper">
+        <div className={`checkbox-wrapper ${labelPosition}`}>
           <p>{label}</p>
           <div className="checkbox">
             {options.map((item, i) => {
@@ -38,7 +38,6 @@ const FormBox = (props) => {
                   type="radio"
                   name={name}
                   labelInside={item}
-                  labelPosition={labelPosition}
                   onChange={onChange}
                   key={`radio-${id + i}`}
                 />

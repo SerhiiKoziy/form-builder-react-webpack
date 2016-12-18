@@ -1,24 +1,20 @@
-﻿import React, {Component} from 'react';
-import NavBar from '../components/NavBar/NavBar'
+﻿import React, { Component } from 'react';
 
 
 export default class Root extends Component {
-    constructor(props) {
-        super(props);
-        // this.store = this.props.store;
-    }
-    
-    render() {
-        return (
-            <div className="root">
-                {/*<NavBar></NavBar>*/}
+  constructor(props) {
+    super(props);
+  }
 
-                <div className="route-wr">
-                    {this.props.children}
-                </div>
+  render() {
+    return (
+      <div className="root">
+        <div className="route-wr">
+          {this.props.children}
+        </div>
 
-            </div>
-        );
-    }
+      </div>
+    );
+  }
 }
 // <NavBar />

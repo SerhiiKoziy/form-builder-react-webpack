@@ -17,7 +17,7 @@ export default function configureStore(initialState = INITIAL_STATE) {
 
   if (module.hot) {
     module.hot.accept('../reducers', () => {
-        return store.replaceReducer(require('../reducers')/*.default if you use Babel 6+ */)
+      return store.replaceReducer( require('../reducers') /* .default if you use Babel 6+  */);
       }
     );
   }

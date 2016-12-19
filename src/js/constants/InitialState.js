@@ -1,5 +1,5 @@
 export const INITIAL_STATE = {
-    columns: 3,
+    columns: 2,
     elements: [
         {
             'view': 'text',

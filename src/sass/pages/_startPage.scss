@@ -8,9 +8,38 @@
   justify-content: flex-start;
   flex-wrap: wrap;
   background: #fff;
-  &.step2{
-    justify-content: center;
 
+
+  &.columns-1{
+    form.form{
+      &>div{
+        width: 100%;
+        .input-box.left{
+          label{
+            min-width: 30%;
+          }
+        }
+      }
+    }
+  }
+  &.columns-2{
+    form.form {
+      & > div {
+        width: 45%;
+        .input-box.left{
+          label{
+            min-width: 30%;
+          }
+        }
+      }
+    }
+  }
+  &.columns-3{
+    form.form {
+      & > div {
+        width: 30%;
+      }
+    }
   }
 
   .make-form{
@@ -44,7 +73,7 @@
         }
       }
       .checkbox-wrapper{
-        height: 75px;
+        height: 90px;
         &.top{
 
         }
@@ -70,8 +99,8 @@
     line-height: 60px;
   }
   p{
-    color: #3e4450;
-    font-size: 30px;
+    color: #000;
+    font-size: 22px;
     font-weight: 400;
   }
 }

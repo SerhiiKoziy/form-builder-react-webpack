@@ -5,13 +5,17 @@ export default function DataReducer(state = INITIAL_STATE, action) {
   const { type, payload } = action;
   switch (type) {
     case types.UPDATE_ELEMENT:
-      const data = state.map(item => {
+      const data = state.elements.map(item => {
         if (item.name === payload.name) {
           item.value = payload.value;
         }
         return item;
       });
-      return data;
+
+      return {
+        ...state,
+        elements:data,
+      };
 
     default:
       return state;

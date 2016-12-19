@@ -7,7 +7,7 @@ import FormBox from '../components/Form/FormBox';
 
 
 const mapStateToProps = (state) => {
-  return { data: state };
+  return { data: state.elements, columns: state.columns };
 };
 
 const mapDispatchToProps = (dispatch) => {
@@ -38,7 +38,7 @@ export default class StartPage extends Component {
   renderElements() {
     let data = this.props.data;
     return (
-      this.props.data.map((item) => {
+      data.map((item) => {
         return (
           <FormBox
             data={data}
@@ -63,11 +63,13 @@ export default class StartPage extends Component {
   }
 
   render() {
+    let columns = this.props.columns;
     return (
-      <div className={'page start-page'}>
+      <div className={`page start-page columns-${columns}`}>
         <div className="make-form">
           <h3>New form</h3>
           <form
+            className="form"
             onSubmit={(e) => {
               e.preventDefault();
             }}

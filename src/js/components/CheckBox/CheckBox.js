@@ -27,7 +27,7 @@ CheckBox.propTypes = {
   options: React.PropTypes.array,
   value: React.PropTypes.string,
   defaultChecked: React.PropTypes.bool,
-  id: React.PropTypes.number,
+
 
 };
 
